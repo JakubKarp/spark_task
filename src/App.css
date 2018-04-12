@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+
+* {
+    margin: 0;
+	padding: 0;
+	border: 0;
+	box-sizing: border-box
+}
+
+body {
+    font-family: 'Josefin Sans', cursive;
+}
+
+/* header component*/  
+.headerComponent {
+    width: 100%;
+    height: 17vh;
+    background-color: rgb(57, 133, 204);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.headerComponent__slogan {
+    color: rgb(32, 4, 4)
+}
+
+/* dropdown component*/
+.dropdown {
+    width: 100%;
+    height: 8vh;
+    background-color: rgb(202, 63, 8);
+    display: flex;
+    justify-content: center
+}
+
+
+.dropdown__component__button {
+    width: 160px;
+    height: 100%;
+    font-weight: 600;
+    background-color: inherit;
+    font-family: 'Josefin Sans', cursive;
+    outline: none;
+}
+
+.dropdown__component__list {
+    z-index: 100;
+    width: 160px;
+    height: 10rem;
+}
+
+.dropdown__component__list__element {
+    width: 100%;
+    height: 25%;
+    font-weight: 400;
+    font-family: 'Josefin Sans', cursive;
+    background-color: rgb(202, 63, 8);
+    border-bottom: 2px solid rgb(57, 133, 204);
+    outline: none;
+}
+
+.dropdown__component__list__element:last-of-type {
+    border-bottom: none;
+}
+
+.dropdown__component__list__element:first-of-type {
+    border-top: 2px solid rgb(57, 133, 204);
+}
+
+/* product list component*/
+.product__list {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 75vh;
+}
+
+.product__list__component {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    z-index: -100;
+}
+
+.product__list__component__singleProduct {
+    width: 22vh;
+    height: 22vh;
+    margin: 0.5rem;
+    z-index: -100;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 10%
+}
+
+.product__list__component__singleProduct__image {
+    width: 4.5rem;
+    height: 4.5rem;
+    margin: 0 auto;
+    border-radius: 10%
+}
+
+.product__list__component__singleProduct__name {
+    font-size: 1rem;
+    margin: 0.2rem auto;
+}
+
+.product__list__component__singleProduct__price {
+    font-size: 0.8rem;
+    margin: 0 auto;
+}
