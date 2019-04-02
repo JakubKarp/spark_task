@@ -1,21 +1,29 @@
-import { GET_PRODUCTS, SET_CATEGORY, SET_COLOR, SET_COLORCATEGORY } from '../actions/actions-products';
+import { GET_PRODUCTS, SET_CATEGORY, SET_COLOR, REMOVE_FILTER } from '../actions/actions-products';
 import {productsData} from '../data/products.js';
 
 const initialState = {
     products: productsData,
-    visibleProducts: []
+    visibleProducts: [],
+    selectedCategory: null,
+    selectedColor: null,
+    filter: null
 };
 
 const productsReducer =  function (state = initialState, action) {
     switch (action.type) {
         case GET_PRODUCTS:
-            return Object.assign({}, state, {visibleProducts: state.products});
+            return {...state, visibleProducts: state.products};
         case SET_CATEGORY:
-            const categoryProducts = state.products.filter(product => product.category === action.category);
-            return Object.assign({}, state, {visibleProducts: categoryProducts});            
+            state.selectedCategory = state.products.filter(product => product.category === action.category);
+            state.filter = 'Kategorii'
+            return  {...state, visibleProducts: state.selectedCategory};            
         case SET_COLOR:
-            const colorProducts = state.products.filter(product => product.color === action.color);
-            return Object.assign({}, state, {visibleProducts: colorProducts});
+            state.selectedColor = state.selectedCategory !== null  ? state.selectedCategory.filter(product => product.color === action.color) : state.products.filter(product => product.color === action.color);
+            state.filter = 'Koloru'
+            return  {...state, visibleProducts: state.selectedColor};
+        case REMOVE_FILTER:
+            (state.selectedColor !== null || state.selectedCategory !== null) ?  (state.selectedCategory = null) && (state.selectedColor = null)  : null;
+            return  {...state, visibleProducts: state.products};    
     }
     return state;    
 };

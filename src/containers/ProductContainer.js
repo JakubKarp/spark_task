@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setCategory, setColor } from '../actions/actions-products';
-import ProductLabelList from '../presentational/ProductListComponent';
+import { setCategory, setColor, removeFilter } from '../actions/actions-products';
+import ProductLabelList from '../presentational/shop/ProductListComponent';
 
 class ProductContainer extends Component {
     constructor(props) {
@@ -10,12 +10,13 @@ class ProductContainer extends Component {
         this.state = {
             showCategoryMenu: false,
             showColorMenu: false,
+            filterName: ''
         };
           
         this.showCategoryMenu = this.showCategoryMenu.bind(this);
         this.showColorMenu = this.showColorMenu.bind(this);
         this.closeCategoryMenu = this.closeCategoryMenu.bind(this);
-        this.closeColorMenu = this.closeColorMenu.bind(this);
+        this.closeColorMenu = this.closeColorMenu.bind(this); 
     }
 
     showCategoryMenu(ev) {
@@ -52,13 +53,27 @@ class ProductContainer extends Component {
     
     chooseCategory(event) {
         (this.props.dispatch(setCategory(event.target.value)));
+        
     }
 
     chooseColor(event) {
         (this.props.dispatch(setColor(event.target.value)));
+        
     }
+
+    
+
+    //tu nie działa
+    // removeFilter(event) {
+    //     this.props.dispatch(removeFilter(event))
+    // }
     
     render() {
+        //const filterName = this.props.filter ? (this.props.filter.map(product => product.category).slice(0,1)) && (this.props.filter.map(product => product.color).slice(0,1)) : '';
+        //this.props.visibleProducts
+        //console.log("TCL: render -> this.props.visibleProducts", this.props.visibleProducts)
+        //this.props.filter
+		console.log("TCL: render -> this.props.filter", this.props.filter)
         return (
             <div>
                 <div className="dropdown">
@@ -111,7 +126,9 @@ class ProductContainer extends Component {
                             )
                         } 
                     </div>
-                </div> 
+                </div>
+                <div> { this.props.filter ? `Filtrujesz według: ${this.props.filter}` : '' }</div>
+                {/* <span onClick={this.removeFilter} >Usuń filtr</span>  */}
                 <ProductLabelList 
                     
                     products={this.props.visibleProducts} 
@@ -123,7 +140,8 @@ class ProductContainer extends Component {
 
 const mapStateToProps = function (store) {
     return {
-        visibleProducts: store.productsReducer.visibleProducts
+        visibleProducts: store.productsReducer.visibleProducts,
+        filter: store.productsReducer.filter
     };
 };
 
