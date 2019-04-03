@@ -5,7 +5,8 @@ const initialState = {
     products: productsData,
     visibleProducts: [],
     selectedCategory: null,
-    selectedColor: null
+    selectedColor: null,
+    filter: ""
     
 };
 
@@ -15,20 +16,21 @@ const productsReducer =  function (state = initialState, action) {
             return {...state, visibleProducts: state.products};
         case SET_CATEGORY:
             //state.selectedCategory = state.products.filter(product => product.category === action.category);
-            state.selectedCategory = state.selectedColor !== null  ? state.selectedColor.filter(product => product.category === action.category) : state.products.filter(product => product.category === action.category);
-			console.log("TCL: productsReducer -> state.selectedCategory", state.selectedCategory)
-            return  {...state, visibleProducts: state.selectedCategory};            
+            state.selectedCategory = state.selectedColor !== null  ? state.selectedColor.filter(product => product.category === action.category) : state.products.filter(product => product.category === action.category) ;
+            const filterA = state.selectedColor !== null  ? "color" : "category";
+			return  {...state, visibleProducts: state.selectedCategory, filter: filterA};            
         case SET_COLOR:
             state.selectedColor = state.selectedCategory !== null  ? state.selectedCategory.filter(product => product.color === action.color) : state.products.filter(product => product.color === action.color);
-            return  {...state, visibleProducts: state.selectedColor};
+            const filterB = state.selectedCategory !== null  ? "category" : "color";
+            return  {...state, visibleProducts: state.selectedColor, filter: filterB};
         case REMOVE_CATEGORY:
             state.selectedCategory !== null ?  state.selectedCategory = null : state;
-            return  {...state, visibleProducts: state.products};
+            return  {...state, visibleProducts: state.products, filter: ""};
         case REMOVE_COLOR:
             state.selectedColor !== null ?  state.selectedColor = null : state;
-            return  {...state, visibleProducts: state.products};    
+            return  {...state, visibleProducts: state.products, filter: ""};    
         default:
-        return state;
+            return state;
     }
     return state;    
 };

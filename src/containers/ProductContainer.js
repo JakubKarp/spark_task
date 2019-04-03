@@ -10,8 +10,8 @@ class ProductContainer extends Component {
         this.state = {
             showCategoryMenu: false,
             showColorMenu: false,
-            filterCategoryStatus: false,
-            filterColorStatus: false
+            //filterCategoryStatus: false,
+            //filterColorStatus: false
         };
           
         this.showCategoryMenu = this.showCategoryMenu.bind(this);
@@ -58,13 +58,13 @@ class ProductContainer extends Component {
     
     chooseCategory(event) {
         (this.props.dispatch(setCategory(event.target.value)));
-        this.state.filterColorStatus !== true && this.setState({filterCategoryStatus: true})
+        //this.state.filterColorStatus !== true && this.setState({filterCategoryStatus: true})
         
     }
 
     chooseColor(event) {
         (this.props.dispatch(setColor(event.target.value)));
-        this.state.filterCategoryStatus !== true && this.setState({filterColorStatus: true})
+        //this.state.filterCategoryStatus !== true && this.setState({filterColorStatus: true})
         
     }
 
@@ -82,12 +82,13 @@ class ProductContainer extends Component {
 
     removeCategoryFilter(){
         (this.props.dispatch(removeCategory()));
-        this.setState({filterCategoryStatus: false, filterColorStatus: false})
+        //this.setState({filterCategoryStatus: false})
+        //this.state.filterColorStatus !== true && this.setState({filterCategoryStatus: true})
     }
 
     removeColorFilter(){
         (this.props.dispatch(removeColor()));
-        this.setState({filterCategoryStatus: false, filterColorStatus: false})
+        //this.setState({filterCategoryStatus: false, filterColorStatus: false})
     }
     
     //const filterNameElement = <div> {  this.props.selectedCategory || this.props.selectedColor ? `Filtrujesz według: ${this.showFilterName()}` : '' }</div>
@@ -156,8 +157,8 @@ class ProductContainer extends Component {
                         } 
                     </div>
                 </div>
-                {  this.props.selectedCategory && !this.state.filterColorStatus && <div>Filtrujesz według: Kategorii <span onClick={() => this.removeCategoryFilter() }>USUŃ</span></div> }
-                {  this.props.selectedColor && !this.state.filterCategoryStatus && <div>Filtrujesz według: Koloru<span onClick={() => this.removeColorFilter() }> USUŃ</span></div> }
+                {  this.props.selectedCategory && this.props.filter === "category" ? <div>Filtrujesz według: Kategorii <span onClick={() => this.removeCategoryFilter() }>USUŃ</span></div> : null }
+                {  this.props.selectedColor && this.props.filter === "color" ? <div>Filtrujesz według: Koloru<span onClick={() => this.removeColorFilter() }> USUŃ</span></div> : null }
                 {/* <span onClick={this.removeFilter} >Usuń filtr</span>  */}
                 <ProductLabelList 
                     
@@ -173,6 +174,7 @@ const mapStateToProps = function (store) {
         visibleProducts: store.productsReducer.visibleProducts,
         selectedCategory: store.productsReducer.selectedCategory,
         selectedColor: store.productsReducer.selectedColor,
+        filter: store.productsReducer.filter
     };
 };
 
