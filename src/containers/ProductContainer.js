@@ -109,7 +109,7 @@ class ProductContainer extends Component {
                 <div className="dropdown">
                     <div className="dropdown__component">                
                         <button className="dropdown__component__button" onClick={this.showCategoryMenu}>
-                            Kategoria
+                        {this.props.selectedCategory && this.props.filter === "category" ? "Filtr" : "Kategoria"}
                         </button>
                         {
                         this.state.showCategoryMenu
