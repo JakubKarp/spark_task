@@ -17,14 +17,14 @@ const productsReducer =  function (state = initialState, action) {
         case SET_CATEGORY:
             //state.selectedCategory = state.products.filter(product => product.category === action.category);
             state.selectedCategory = state.selectedColor !== null  ? state.selectedColor.filter(product => product.category === action.category) : state.products.filter(product => product.category === action.category) ;
-            const filterA = state.selectedColor !== null  ? "color" : "category";
-			return  {...state, visibleProducts: state.selectedCategory, filter: filterA};            
+            const filterCategory = state.selectedColor !== null  ? "color" : "category";
+			return  {...state, visibleProducts: state.selectedCategory, filter: filterCategory};            
         case SET_COLOR:
             state.selectedColor = state.selectedCategory !== null  ? state.selectedCategory.filter(product => product.color === action.color) : state.products.filter(product => product.color === action.color);
-            const filterB = state.selectedCategory !== null  ? "category" : "color";
-            return  {...state, visibleProducts: state.selectedColor, filter: filterB};
+            const filterColor = state.selectedCategory !== null  ? "category" : "color";
+            return  {...state, visibleProducts: state.selectedColor, filter: filterColor};
         case REMOVE_CATEGORY:
-            state.selectedCategory !== null ?  state.selectedCategory = null : "";
+            state.selectedCategory !== null ?  state.selectedCategory = null : state;
             return  {...state, visibleProducts: state.products, filter: ""};
         case REMOVE_COLOR:
             state.selectedColor !== null ?  state.selectedColor = null : state;
@@ -32,7 +32,6 @@ const productsReducer =  function (state = initialState, action) {
         default:
             return state;
     }
-    
 };
 
 export default productsReducer;

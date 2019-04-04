@@ -23,7 +23,8 @@ export const productsData = [
         category: "kakle",
         color: "blue",
         price: "29.99",
-        image: kakle_blue
+        image: kakle_blue,
+        magazine_amount: 20
     },
     {
         id: 2,
@@ -31,7 +32,8 @@ export const productsData = [
         category: "kakle",
         color: "green",
         price: "27.99",
-        image: kakle_green
+        image: kakle_green,
+        magazine_amount: 5
     },
     {
         id: 3,
@@ -39,7 +41,8 @@ export const productsData = [
         category: "kakle",
         color: "rose",
         price: "25.99",
-        image: kakle_rose
+        image: kakle_rose,
+        magazine_amount: 7
     },
     {
         id: 4,
@@ -47,7 +50,8 @@ export const productsData = [
         category: "kakle",
         color: "yellow",
         price: "23.99",
-        image: kakle_yellow
+        image: kakle_yellow, 
+        magazine_amount: 154
     },
     {
         id: 5,
@@ -55,7 +59,8 @@ export const productsData = [
         category: "mono",
         color: "blue",
         price: "29.99",
-        image: mono_blue
+        image: mono_blue,
+        magazine_amount: 56
     },
     {
         id: 6,
@@ -63,7 +68,8 @@ export const productsData = [
         category: "mono",
         color: "green",
         price: "27.99",
-        image: mono_green
+        image: mono_green,
+        magazine_amount: 2
     },
     {
         id: 7,
@@ -71,7 +77,8 @@ export const productsData = [
         category: "mono",
         color: "rose",
         price: "25.99",
-        image: mono_rose
+        image: mono_rose, 
+        magazine_amount: 654
     },
     {
         id: 8,
@@ -79,7 +86,8 @@ export const productsData = [
         category: "mono",
         color: "yellow",
         price: "23.99",
-        image: mono_yellow
+        image: mono_yellow,
+        magazine_amount: 25
     },
     {
         id: 9,
@@ -87,7 +95,8 @@ export const productsData = [
         category: "norway",
         color: "blue",
         price: "29.99",
-        image: norway_blue
+        image: norway_blue,
+        magazine_amount: 17
     },
     {
         id: 10,
@@ -95,7 +104,8 @@ export const productsData = [
         category: "norway",
         color: "green",
         price: "27.99",
-        image: norway_green
+        image: norway_green,
+        magazine_amount: 25
     },
     {
         id: 11,
@@ -103,7 +113,8 @@ export const productsData = [
         category: "norway",
         color: "rose",
         price: "25.99",
-        image: norway_rose
+        image: norway_rose,
+        magazine_amount: 1
     },
     {
         id: 12,
@@ -111,7 +122,8 @@ export const productsData = [
         category: "norway",
         color: "yellow",
         price: "23.99",
-        image: norway_yellow
+        image: norway_yellow, 
+        magazine_amount: 5
     },
     {
         id: 13,
@@ -119,7 +131,8 @@ export const productsData = [
         category: "omg",
         color: "blue",
         price: "29.99",
-        image: omg_blue
+        image: omg_blue,
+        magazine_amount: 58
     },
     {
         id: 14,
@@ -127,7 +140,8 @@ export const productsData = [
         category: "omg",
         color: "green",
         price: "27.99",
-        image: omg_green
+        image: omg_green,
+        magazine_amount: 25
     },
     {
         id: 15,
@@ -135,7 +149,8 @@ export const productsData = [
         category: "omg",
         color: "rose",
         price: "25.99",
-       image: omg_rose
+       image: omg_rose, 
+       magazine_amount: 8
     },
     {
         id: 16,
@@ -143,6 +158,7 @@ export const productsData = [
         category: "omg",
         color: "yellow",
         price: "23.99",
-        image: omg_yellow
+        image: omg_yellow,
+        magazine_amount: 555
     }
 ]   
