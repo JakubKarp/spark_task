@@ -2,7 +2,7 @@ import React from 'react';
 import ProductContainer from './containers/ProductContainer.js';
 import HeaderContainer from './containers/HeaderContainer';
 import AdminPanel from './presentational/admin/AdminPanelComponent';
-import { BrowserRouter as Router, Route, Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 const App = () => {
