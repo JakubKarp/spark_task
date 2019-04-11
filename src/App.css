@@ -59,6 +59,9 @@ body {
     justify-content: center
 }
 
+.dropdown__component{
+    z-index: 100;
+}
 
 .dropdown__component__button {
     width: 160px;
@@ -107,8 +110,13 @@ body {
     height: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    z-index: -100;
+    justify-content: space-around;    
+}
+
+.product__list__component a:link, 
+.product__list__component a:visited {
+    text-decoration: none;
+    color: black
 }
 
 .product__list__component__singleProduct {
