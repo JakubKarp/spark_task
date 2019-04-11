@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setCategory, setColor, removeCategory, removeColor } from '../actions/actions-products';
 import ProductLabelList from '../presentational/shop/ProductListComponent';
+import { BrowserRouter as Router, Route, Link} from "react-router-dom";
 
 class ProductContainer extends Component {
     constructor(props) {
@@ -157,7 +158,9 @@ class ProductContainer extends Component {
                 <ProductLabelList 
                     
                     products={this.props.visibleProducts} 
+                    
                 />
+                
             </div>
         )
     }

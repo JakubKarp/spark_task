@@ -1,9 +1,10 @@
-import { GET_PRODUCTS, SET_CATEGORY, SET_COLOR, REMOVE_CATEGORY, REMOVE_COLOR } from '../actions/actions-products';
+import { GET_PRODUCTS, GET_PRODUCT, SET_CATEGORY, SET_COLOR, REMOVE_CATEGORY, REMOVE_COLOR } from '../actions/actions-products';
 import {productsData} from '../data/products.js';
 
 const initialState = {
     products: productsData,
     visibleProducts: [],
+    visibleProduct: {},
     selectedCategory: null,
     selectedColor: null,
     filter: ""
@@ -14,6 +15,9 @@ const productsReducer =  function (state = initialState, action) {
     switch (action.type) {
         case GET_PRODUCTS:
             return {...state, visibleProducts: state.products};
+        case GET_PRODUCT: 
+            const selectedProduct = state.products.find(product => product.id === parseInt(action.id));
+            return {...state, visibleProduct: selectedProduct};    
         case SET_CATEGORY:
             //state.selectedCategory = state.products.filter(product => product.category === action.category);
             state.selectedCategory = state.selectedColor !== null  ? state.selectedColor.filter(product => product.category === action.category) : state.products.filter(product => product.category === action.category) ;
