@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route, IndexRoute } from 'react-router';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import App from './App';
 import Product from './presentational/shop/SingleProduct';
 
