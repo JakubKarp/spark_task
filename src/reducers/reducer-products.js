@@ -1,6 +1,6 @@
 import { GET_PRODUCTS, GET_PRODUCT, SET_CATEGORY, SET_COLOR, REMOVE_CATEGORY, REMOVE_COLOR } from '../actions/actions-products';
 import {productsData} from '../data/products.js';
-
+//import {dataFromMongo} from '../data/dataFromMongo' 
 const initialState = {
     products: productsData,
     visibleProducts: [],
@@ -14,6 +14,9 @@ const initialState = {
 const productsReducer =  function (state = initialState, action) {
     switch (action.type) {
         case GET_PRODUCTS:
+            //console.log(dataFromMongo);
+            
+
             return {...state, visibleProducts: state.products};
         case GET_PRODUCT: 
             const selectedProduct = state.products.find(product => product.id === parseInt(action.id));

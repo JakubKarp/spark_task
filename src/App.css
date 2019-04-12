@@ -130,6 +130,12 @@ body {
     border-radius: 10%
 }
 
+.product__list__component__singleProduct:hover{
+    -webkit-box-shadow: 5px 5px 13px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 5px 5px 13px 0px rgba(0,0,0,0.75);
+    box-shadow: 5px 5px 13px 0px rgba(0,0,0,0.75);
+}
+
 .product__list__component__singleProduct__image {
     width: 4.5rem;
     height: 4.5rem;

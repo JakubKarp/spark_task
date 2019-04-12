@@ -16,7 +16,7 @@ const App = () => {
         </div>
         <div className="admin">
           <AdminPanel />
-          <Link to={'/prod/admin'} >Link</Link>
+          <Link to={'/admin'} >Link</Link>
         </div>  
     </div>
     

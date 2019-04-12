@@ -162,3 +162,6 @@ export const productsData = [
         magazine_amount: 555
     }
 ]   
+
+//db.products.insertOne({product_id: 1, name: "kakle blue", category: "kakle", color: "blue", price: "29.99", magazine_amount: 20})
+//kakleshop.products
