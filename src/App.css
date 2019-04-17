@@ -131,9 +131,8 @@ body {
 }
 
 .product__list__component__singleProduct:hover{
-    -webkit-box-shadow: 5px 5px 13px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 5px 5px 13px 0px rgba(0,0,0,0.75);
-    box-shadow: 5px 5px 13px 0px rgba(0,0,0,0.75);
+    box-shadow: 2px 2px 7px -3px rgba(0,0,0,0.75);
+    transform: translate(-1px, -1px)
 }
 
 .product__list__component__singleProduct__image {

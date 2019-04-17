@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setCategory, setColor, removeCategory, removeColor } from '../actions/actions-products';
+import axios from 'axios';
 import ProductLabelList from '../presentational/shop/ProductListComponent';
 import { BrowserRouter as Router, Route, Link} from "react-router-dom";
+
+
+const Product = props => (
+    <div>
+        <div>{props.product.name}</div>
+        <div>{props.product.category}</div>
+        <div>{props.product.color}</div>
+    </div>
+)
 
 class ProductContainer extends Component {
     constructor(props) {
@@ -13,6 +23,7 @@ class ProductContainer extends Component {
             showColorMenu: false,
             //filterCategoryStatus: false,
             //filterColorStatus: false
+            products: []
         };
           
         this.showCategoryMenu = this.showCategoryMenu.bind(this);
@@ -24,6 +35,22 @@ class ProductContainer extends Component {
         this.removeColorFilter = this.removeColorFilter.bind(this);
     }
 
+
+    componentDidMount() {
+        axios.get('http://localhost:4000/products')
+            .then(response => {
+                this.setState({ products: response.data });
+            })
+            .catch(function (error){
+                console.log(error);
+            })
+    }
+
+    productsList() {
+        return this.state.products.map(function(currentProducts, i){
+            return <Product product={currentProducts} key={i} />;
+        })
+    }
 
     showCategoryMenu(ev) {
         ev.preventDefault();
@@ -155,24 +182,27 @@ class ProductContainer extends Component {
                 {  this.props.selectedCategory && this.props.filter === "category" ? <div className="filter_information" >Filtrujesz według: Kategorii {filterCategoryName}</div> : null }
                 {  this.props.selectedColor && this.props.filter === "color" ? <div className="filter_information">Filtrujesz według: Koloru {filterColorName}</div> : null }
                 {/* <span onClick={this.removeFilter} >Usuń filtr</span>  */}
-                <ProductLabelList 
+                { this.productsList() }
+                
+                {/* <ProductLabelList 
                     
                     products={this.props.visibleProducts} 
                     
-                />
+                /> */}
                 
             </div>
         )
     }
 }
 
-const mapStateToProps = function (store) {
-    return {
-        visibleProducts: store.productsReducer.visibleProducts,
-        selectedCategory: store.productsReducer.selectedCategory,
-        selectedColor: store.productsReducer.selectedColor,
-        filter: store.productsReducer.filter
-    };
-};
+// const mapStateToProps = function (store) {
+//     return {
+//         visibleProducts: store.productsReducer.visibleProducts,
+//         selectedCategory: store.productsReducer.selectedCategory,
+//         selectedColor: store.productsReducer.selectedColor,
+//         filter: store.productsReducer.filter
+//     };
+// };
 
-export default connect(mapStateToProps)(ProductContainer);
+//export default connect(mapStateToProps)(ProductContainer);
+export default ProductContainer;
