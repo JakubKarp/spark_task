@@ -1,6 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Single from './SingleProduct';
+//import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+//import Single from './SingleProduct';
 
 const ProductLabel = (props) => (
     <div className="product__list__component__singleProduct">

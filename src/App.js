@@ -7,19 +7,16 @@ import { Link } from "react-router-dom";
 
 const App = () => {
   return (
-    
     <div className="App">
-      
-        <div className="shop">  
+        <div className="shop">
           <HeaderContainer />
           <ProductContainer />
         </div>
         <div className="admin">
           <AdminPanel />
           <Link to={'/admin'} >Link</Link>
-        </div>  
+        </div>
     </div>
-    
   );
 };
 

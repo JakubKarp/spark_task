@@ -1,7 +1,7 @@
 import React from 'react';
 import ProductLabel from './ProductComponent';
 
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const ProductLabelList = (props) => (
     <div className="product__list">

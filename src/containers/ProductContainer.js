@@ -1,19 +1,11 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+//import { connect } from 'react-redux';
 import { setCategory, setColor, removeCategory, removeColor } from '../actions/actions-products';
-import axios from 'axios';
+
 import ProductLabelList from '../presentational/shop/ProductListComponent';
-import { BrowserRouter as Router, Route, Link} from "react-router-dom";
+// import { BrowserRouter as Router, Route, Link} from "react-router-dom";
 //import ProductLabel from '../presentational/shop/ProductComponent';
 
-
-const Product = props => (
-    <div>
-        <div>{props.product.name}</div>
-        <div>{props.product.category}</div>
-        <div>{props.product.color}</div>
-    </div>
-)
 
 class ProductContainer extends Component {
     constructor(props) {
@@ -36,16 +28,24 @@ class ProductContainer extends Component {
         this.removeColorFilter = this.removeColorFilter.bind(this);
     }
 
-
-    componentDidMount() {
-        axios.get('http://localhost:4000/products')
-            .then(response => {
-                this.setState({ products: response.data });
-            })
-            .catch(function (error){
-                console.log(error);
-            })
+    componentDidMount(){
+        this.setState({
+            products: this.props.visibleProducts
+        })
+        console.log("products from comDidM", this.state.products);
+        
     }
+
+
+    //componentDidMount() {
+        // axios.get('http://localhost:4000/products')
+        //     .then(response => {
+        //         this.setState({ products: response.data });
+        //     })
+        //     .catch(function (error){
+        //         console.log(error);
+        //     })
+    //}
 
     // productsList() {
     //     return this.state.products.map(function(currentProducts, i){
@@ -132,7 +132,7 @@ class ProductContainer extends Component {
         const filterCategoryName = this.props.selectedCategory ? this.props.selectedCategory.map(product => product.category).slice(0,1) : '';
         const filterColorName = this.props.selectedColor ? this.props.selectedColor.map(product => product.color).slice(0,1) : '';
         //this.props.visibleProducts
-        //console.log("TCL: render -> this.props.visibleProducts", this.props.visibleProducts)
+        console.log("TCL: render -> this.props.visibleProducts", this.props.visibleProducts)
         //this.props.filter
 		return (
             <div>
@@ -183,8 +183,8 @@ class ProductContainer extends Component {
                 {  this.props.selectedCategory && this.props.filter === "category" ? <div className="filter_information" >Filtrujesz według: Kategorii {filterCategoryName}</div> : null }
                 {  this.props.selectedColor && this.props.filter === "color" ? <div className="filter_information">Filtrujesz według: Koloru {filterColorName}</div> : null }
                 {/* <span onClick={this.removeFilter} >Usuń filtr</span>  */}
-                    <ProductLabelList products={this.state.products} />
-                
+                {this.props.visibleProducts ? <ProductLabelList products={this.state.products} /> : "jeszcze ładuje"}
+
                 {/* <ProductLabelList
 
                     products={this.props.visibleProducts}
