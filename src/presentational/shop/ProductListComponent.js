@@ -9,14 +9,14 @@ const ProductLabelList = (props) => (
             {props.products && props.products.map((product, idx) => {
                 return (
                     <div key={product.id}  >
-                        <Link key={idx} to={`/prod/${product.id}` } >
-                        <ProductLabel key={product.id} product={product} />
+                        <Link key={idx} to={`/prod/${product.product_id}` } >
+                            <ProductLabel key={product.id} product={product} />
                         </Link>
                     </div>
                 )
             })}
         </div>
-    </div>    
+    </div>
 );
 
 export default ProductLabelList;

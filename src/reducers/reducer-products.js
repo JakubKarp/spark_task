@@ -1,6 +1,6 @@
 import { GET_PRODUCTS, GET_PRODUCT, SET_CATEGORY, SET_COLOR, REMOVE_CATEGORY, REMOVE_COLOR } from '../actions/actions-products';
 import {productsData} from '../data/products.js';
-//import {dataFromMongo} from '../data/dataFromMongo' 
+//import {dataFromMongo} from '../data/dataFromMongo'
 const initialState = {
     products: productsData,
     visibleProducts: [],
@@ -8,24 +8,24 @@ const initialState = {
     selectedCategory: null,
     selectedColor: null,
     filter: ""
-    
+
 };
 
 const productsReducer =  function (state = initialState, action) {
     switch (action.type) {
         case GET_PRODUCTS:
             //console.log(dataFromMongo);
-            
+
 
             return {...state, visibleProducts: state.products};
-        case GET_PRODUCT: 
+        case GET_PRODUCT:
             const selectedProduct = state.products.find(product => product.id === parseInt(action.id));
-            return {...state, visibleProduct: selectedProduct};    
+            return {...state, visibleProduct: selectedProduct};
         case SET_CATEGORY:
             //state.selectedCategory = state.products.filter(product => product.category === action.category);
             state.selectedCategory = state.selectedColor !== null  ? state.selectedColor.filter(product => product.category === action.category) : state.products.filter(product => product.category === action.category) ;
             const filterCategory = state.selectedColor !== null  ? "color" : "category";
-			return  {...state, visibleProducts: state.selectedCategory, filter: filterCategory};            
+			return  {...state, visibleProducts: state.selectedCategory, filter: filterCategory};
         case SET_COLOR:
             state.selectedColor = state.selectedCategory !== null  ? state.selectedCategory.filter(product => product.color === action.color) : state.products.filter(product => product.color === action.color);
             const filterColor = state.selectedCategory !== null  ? "category" : "color";
@@ -35,7 +35,7 @@ const productsReducer =  function (state = initialState, action) {
             return  {...state, visibleProducts: state.products, filter: ""};
         case REMOVE_COLOR:
             state.selectedColor !== null ?  state.selectedColor = null : state;
-            return  {...state, visibleProducts: state.products, filter: ""};    
+            return  {...state, visibleProducts: state.products, filter: ""};
         default:
             return state;
     }

@@ -4,6 +4,7 @@ import { setCategory, setColor, removeCategory, removeColor } from '../actions/a
 import axios from 'axios';
 import ProductLabelList from '../presentational/shop/ProductListComponent';
 import { BrowserRouter as Router, Route, Link} from "react-router-dom";
+//import ProductLabel from '../presentational/shop/ProductComponent';
 
 
 const Product = props => (
@@ -25,11 +26,11 @@ class ProductContainer extends Component {
             //filterColorStatus: false
             products: []
         };
-          
+
         this.showCategoryMenu = this.showCategoryMenu.bind(this);
         this.showColorMenu = this.showColorMenu.bind(this);
         //this.closeCategoryMenu = this.closeCategoryMenu.bind(this);
-        //this.closeColorMenu = this.closeColorMenu.bind(this); 
+        //this.closeColorMenu = this.closeColorMenu.bind(this);
         //this.showFilterName = this.showFilterName.bind(this);
         this.removeCategoryFilter = this.removeCategoryFilter.bind(this);
         this.removeColorFilter = this.removeColorFilter.bind(this);
@@ -46,11 +47,11 @@ class ProductContainer extends Component {
             })
     }
 
-    productsList() {
-        return this.state.products.map(function(currentProducts, i){
-            return <Product product={currentProducts} key={i} />;
-        })
-    }
+    // productsList() {
+    //     return this.state.products.map(function(currentProducts, i){
+    //         return <ProductLabel product={currentProducts} key={i} />;
+    //     })
+    // }
 
     showCategoryMenu(ev) {
         ev.preventDefault();
@@ -71,19 +72,19 @@ class ProductContainer extends Component {
     //     if (!this.dropdownMenu.contains(ev.target)) {
     //     this.setState({ showCategoryMenu: false }, () => {
     //         document.removeEventListener('click', this.closeCategoryMenu);
-    //       });  
-    //     }        
+    //       });
+    //     }
     //   }
-    
+
     // closeColorMenu(ev) {
     //     ev.preventDefault();
     //     if (!this.dropdownMenu.contains(ev.target)) {
     //     this.setState({ showColorMenu: false }, () => {
     //         document.removeEventListener('click', this.closeColorMenu);
-    //       });  
+    //       });
     //     }
-    // }  
-    
+    // }
+
     chooseCategory(event) {
         (this.props.dispatch(setCategory(event.target.value)));
         //this.state.filterColorStatus !== true && this.setState({filterCategoryStatus: true})
@@ -99,12 +100,12 @@ class ProductContainer extends Component {
     // showFilterName() {
     //     if (this.props.selectedCategory) {
     //         this.setState({filterName: this.props.selectedCategory.map(product => product.category).slice(0,1)})
-            
+
     //     } else if (this.props.selectedColor) {
     //         this.setState({filterName: this.props.selectedColor.map(product => product.category).slice(0,1)})
-            
+
     //     } else {this.state.filterName}
-        
+
 
     // }
 
@@ -118,16 +119,16 @@ class ProductContainer extends Component {
         (this.props.dispatch(removeColor()));
         //this.setState({filterCategoryStatus: false, filterColorStatus: false})
     }
-    
+
     //const filterNameElement = <div> {  this.props.selectedCategory || this.props.selectedColor ? `Filtrujesz według: ${this.showFilterName()}` : '' }</div>
 
     //tu nie działa
     // removeFilter(event) {
     //     this.props.dispatch(removeFilter(event))
     // }
-    
+
     render() {
-        
+
         const filterCategoryName = this.props.selectedCategory ? this.props.selectedCategory.map(product => product.category).slice(0,1) : '';
         const filterColorName = this.props.selectedColor ? this.props.selectedColor.map(product => product.color).slice(0,1) : '';
         //this.props.visibleProducts
@@ -157,7 +158,7 @@ class ProductContainer extends Component {
                             )
                         }
                     </div>
-                    <div className="dropdown__component">  
+                    <div className="dropdown__component">
                     {this.props.selectedColor && this.props.filter === "color" ? <button className="dropdown__component__button" onClick={() => this.removeColorFilter() }>USUŃ FILTR</button> : <button className="dropdown__component__button" onClick={this.showColorMenu}>Kolor</button>}
                     {this.state.showColorMenu
                         ? (
@@ -174,22 +175,22 @@ class ProductContainer extends Component {
                         </div>
                         )
                         : (
-                        null 
+                        null
                         )
-                    } 
+                    }
                     </div>
                 </div>
                 {  this.props.selectedCategory && this.props.filter === "category" ? <div className="filter_information" >Filtrujesz według: Kategorii {filterCategoryName}</div> : null }
                 {  this.props.selectedColor && this.props.filter === "color" ? <div className="filter_information">Filtrujesz według: Koloru {filterColorName}</div> : null }
                 {/* <span onClick={this.removeFilter} >Usuń filtr</span>  */}
-                { this.productsList() }
+                    <ProductLabelList products={this.state.products} />
                 
-                {/* <ProductLabelList 
-                    
-                    products={this.props.visibleProducts} 
-                    
+                {/* <ProductLabelList
+
+                    products={this.props.visibleProducts}
+
                 /> */}
-                
+
             </div>
         )
     }
