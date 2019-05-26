@@ -4,7 +4,8 @@ TO DO
 - podpiąć bazę do sekcji admin - wyświetlanie ilości magazynowej każdego produktu
 - DALSZE KROKI: zamówienia [front zamówienia, wypychanie zamówienia do bazy, wyświetlanie w panelu admin zamówień]
 
-
+- 25.12.19
+    - pełne podpięcie bazy do frontu i wyświetlanie produktów (probelmy z reduxem nie rozwiązane)
 - 12.05.19
     - dodanie produktów do bazy danych
     - podpięcie bazy do frontu

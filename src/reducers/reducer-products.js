@@ -1,16 +1,25 @@
-import { GET_PRODUCTS, GET_PRODUCT, SET_CATEGORY, SET_COLOR, REMOVE_CATEGORY, REMOVE_COLOR } from '../actions/actions-products';
-import { getFromMongo } from '../data/AxiosModule'
+import { GET_PRODUCTS, GET_PRODUCT, SET_CATEGORY, SET_COLOR, REMOVE_CATEGORY, REMOVE_COLOR, LOAD_PRODUCTS_SUCCESS } from '../actions/actions-products';
+//import { getFromMongo } from '../data/products-api'
 //import {productsData} from '../data/products.js';
 //import {dataFromMongo} from '../data/dataFromMongo'
 const initialState = {
-    products: {
-                 product_id: 15,
-                 name: "omg rose",
-                 category: "omg",
-                 color: "rose",
-                 price: "25.99",
-                magazine_amount: 8
-             },
+    products: [
+    //     {
+    //     product_id: 15,
+    //     name: "omg rose",
+    //     category: "omg",
+    //     color: "rose",
+    //     price: "25.99",
+    //     magazine_amount: 8
+    //  }, {
+    //     product_id: 15,
+    //     name: "kakle blue",
+    //     category: "kakle",
+    //     color: "blue",
+    //     price: "25.99",
+    //     magazine_amount: 8
+    //  } 
+    ],
     visibleProducts: [],
     visibleProduct: {},
     selectedCategory: null,
@@ -18,22 +27,13 @@ const initialState = {
     filter: "",
 
 };
-console.log("state.products", initialState.products);
-console.log("state.visibleProducts", initialState.visibleProduct);
-
-
 
 const productsReducer =  function (state = initialState, action) {
     switch (action.type) {
-        // case FETCH_PRODUCTS_BEGIN:
-        //     return {...state, loading: true, error: null};
-        // case FETCH_PRODUCTS_SUCCESS:
-        //     console.log("action.payload.products", action.payload.products )
-        //     return {...state, loading: false, products: action.payload.products};
-        // case FETCH_PRODUCTS_FAILURE:
-        //     return {...state, loading: false, error: action.payload.error, products: []};
+        case LOAD_PRODUCTS_SUCCESS:
+        //console.log("proszę!!!!!!", action.products)
+            return{...state, products: action.products}
         case GET_PRODUCTS:
-        console.log("state.visibleProduct from case", state.visibleProduct)
             return {...state, visibleProducts: state.products};
         case GET_PRODUCT:
             const selectedProduct = state.products.find(product => product.id === parseInt(action.id));

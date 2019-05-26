@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-//import { connect } from 'react-redux';
-import { setCategory, setColor, removeCategory, removeColor } from '../actions/actions-products';
+import { connect } from 'react-redux';
+import { setCategory, setColor, removeCategory, removeColor, getProducts } from '../actions/actions-products';
 
 import ProductLabelList from '../presentational/shop/ProductListComponent';
 // import { BrowserRouter as Router, Route, Link} from "react-router-dom";
@@ -33,25 +33,24 @@ class ProductContainer extends Component {
             products: this.props.visibleProducts
         })
         console.log("products from comDidM", this.state.products);
-        
+
     }
 
+    componentDidUpdate(prevProps) {
 
-    //componentDidMount() {
-        // axios.get('http://localhost:4000/products')
-        //     .then(response => {
-        //         this.setState({ products: response.data });
-        //     })
-        //     .catch(function (error){
-        //         console.log(error);
-        //     })
-    //}
+        if (this.props.productsReady !== prevProps.productsReady ) {
+            this.props.dispatch(getProducts());
+            console.log("zzzzzzzzzzz", this.props.productsReady);
 
-    // productsList() {
-    //     return this.state.products.map(function(currentProducts, i){
-    //         return <ProductLabel product={currentProducts} key={i} />;
-    //     })
-    // }
+        }
+        if (this.props.visibleProducts !== prevProps.visibleProducts) {
+            console.log("yyyyyyyyyyy", this.props.visibleProducts);
+            this.setState({
+                products: this.props.visibleProducts
+            })
+        }
+
+    }
 
     showCategoryMenu(ev) {
         ev.preventDefault();
@@ -131,9 +130,10 @@ class ProductContainer extends Component {
 
         const filterCategoryName = this.props.selectedCategory ? this.props.selectedCategory.map(product => product.category).slice(0,1) : '';
         const filterColorName = this.props.selectedColor ? this.props.selectedColor.map(product => product.color).slice(0,1) : '';
-        //this.props.visibleProducts
         console.log("TCL: render -> this.props.visibleProducts", this.props.visibleProducts)
-        //this.props.filter
+        console.log("log.products STATE", this.state.products);
+
+
 		return (
             <div>
                 <div className="dropdown">
@@ -183,7 +183,7 @@ class ProductContainer extends Component {
                 {  this.props.selectedCategory && this.props.filter === "category" ? <div className="filter_information" >Filtrujesz według: Kategorii {filterCategoryName}</div> : null }
                 {  this.props.selectedColor && this.props.filter === "color" ? <div className="filter_information">Filtrujesz według: Koloru {filterColorName}</div> : null }
                 {/* <span onClick={this.removeFilter} >Usuń filtr</span>  */}
-                {this.props.visibleProducts ? <ProductLabelList products={this.state.products} /> : "jeszcze ładuje"}
+                {this.props.visibleProducts.length > 0 ? <ProductLabelList products={this.state.products} /> : "jeszcze ładuje"}
 
                 {/* <ProductLabelList
 
@@ -196,14 +196,15 @@ class ProductContainer extends Component {
     }
 }
 
-// const mapStateToProps = function (store) {
-//     return {
-//         visibleProducts: store.productsReducer.visibleProducts,
-//         selectedCategory: store.productsReducer.selectedCategory,
-//         selectedColor: store.productsReducer.selectedColor,
-//         filter: store.productsReducer.filter
-//     };
-// };
+const mapStateToProps = function (store) {
+    return {
+        productsReady: store.productsReducer.products,
+        visibleProducts: store.productsReducer.visibleProducts,
+        selectedCategory: store.productsReducer.selectedCategory,
+        selectedColor: store.productsReducer.selectedColor,
+        filter: store.productsReducer.filter
+    };
+};
 
-//export default connect(mapStateToProps)(ProductContainer);
-export default ProductContainer;
+export default connect(mapStateToProps)(ProductContainer);
+//export default ProductContainer;
