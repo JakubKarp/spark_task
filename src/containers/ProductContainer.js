@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { setCategory, setColor, removeCategory, removeColor, getProducts } from '../actions/actions-products';
 
 import ProductLabelList from '../presentational/shop/ProductListComponent';
-
+import { loadProductsFromMongo } from '../actions/actions-data';
 
 class ProductContainer extends Component {
     constructor(props) {
@@ -25,11 +25,7 @@ class ProductContainer extends Component {
     }
 
     componentDidMount(){
-        this.setState({
-            products: this.props.visibleProducts
-        })
-        console.log("products from comDidM", this.state.products);
-
+        this.props.dispatch(loadProductsFromMongo());
     }
 
     componentDidUpdate(prevProps) {

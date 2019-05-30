@@ -14,9 +14,10 @@ const initialState = {
 const productsReducer =  function (state = initialState, action) {
     switch (action.type) {
         case LOAD_PRODUCTS_SUCCESS:
-        //console.log("proszę!!!!!!", action.products)
+        console.log("proszę!!!!!!", action.products)
             return{...state, products: action.products}
         case GET_PRODUCTS:
+                console.log("dawac!!!!!!", state.products)
             return {...state, visibleProducts: state.products};
         case GET_PRODUCT:
             const selectedProduct = state.products.find(product => product.id === parseInt(action.id));
