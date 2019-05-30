@@ -1,25 +1,8 @@
-import { GET_PRODUCTS, GET_PRODUCT, SET_CATEGORY, SET_COLOR, REMOVE_CATEGORY, REMOVE_COLOR, LOAD_PRODUCTS_SUCCESS } from '../actions/actions-products';
-//import { getFromMongo } from '../data/products-api'
-//import {productsData} from '../data/products.js';
-//import {dataFromMongo} from '../data/dataFromMongo'
+import { GET_PRODUCTS, GET_PRODUCT, SET_CATEGORY, SET_COLOR, REMOVE_CATEGORY, REMOVE_COLOR } from '../actions/actions-products';
+import { LOAD_PRODUCTS_SUCCESS } from '../actions/actions-data'
+
 const initialState = {
-    products: [
-    //     {
-    //     product_id: 15,
-    //     name: "omg rose",
-    //     category: "omg",
-    //     color: "rose",
-    //     price: "25.99",
-    //     magazine_amount: 8
-    //  }, {
-    //     product_id: 15,
-    //     name: "kakle blue",
-    //     category: "kakle",
-    //     color: "blue",
-    //     price: "25.99",
-    //     magazine_amount: 8
-    //  } 
-    ],
+    products: [],
     visibleProducts: [],
     visibleProduct: {},
     selectedCategory: null,

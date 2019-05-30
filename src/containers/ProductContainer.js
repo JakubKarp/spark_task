@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { setCategory, setColor, removeCategory, removeColor, getProducts } from '../actions/actions-products';
 
 import ProductLabelList from '../presentational/shop/ProductListComponent';
-// import { BrowserRouter as Router, Route, Link} from "react-router-dom";
-//import ProductLabel from '../presentational/shop/ProductComponent';
 
 
 class ProductContainer extends Component {
@@ -14,8 +12,6 @@ class ProductContainer extends Component {
         this.state = {
             showCategoryMenu: false,
             showColorMenu: false,
-            //filterCategoryStatus: false,
-            //filterColorStatus: false
             products: []
         };
 
@@ -66,65 +62,28 @@ class ProductContainer extends Component {
         });
     }
 
-    // closeCategoryMenu(ev) {
-    //     ev.preventDefault();
-    //     if (!this.dropdownMenu.contains(ev.target)) {
-    //     this.setState({ showCategoryMenu: false }, () => {
-    //         document.removeEventListener('click', this.closeCategoryMenu);
-    //       });
-    //     }
-    //   }
-
-    // closeColorMenu(ev) {
-    //     ev.preventDefault();
-    //     if (!this.dropdownMenu.contains(ev.target)) {
-    //     this.setState({ showColorMenu: false }, () => {
-    //         document.removeEventListener('click', this.closeColorMenu);
-    //       });
-    //     }
-    // }
 
     chooseCategory(event) {
         (this.props.dispatch(setCategory(event.target.value)));
-        //this.state.filterColorStatus !== true && this.setState({filterCategoryStatus: true})
         this.setState({ showCategoryMenu: false })
     }
 
     chooseColor(event) {
         (this.props.dispatch(setColor(event.target.value)));
-        //this.state.filterCategoryStatus !== true && this.setState({filterColorStatus: true})
         this.setState({ showColorMenu: false })
     }
 
-    // showFilterName() {
-    //     if (this.props.selectedCategory) {
-    //         this.setState({filterName: this.props.selectedCategory.map(product => product.category).slice(0,1)})
 
-    //     } else if (this.props.selectedColor) {
-    //         this.setState({filterName: this.props.selectedColor.map(product => product.category).slice(0,1)})
-
-    //     } else {this.state.filterName}
-
-
-    // }
 
     removeCategoryFilter(){
         (this.props.dispatch(removeCategory()));
-        //this.setState({filterCategoryStatus: false})
-        //this.state.filterColorStatus !== true && this.setState({filterCategoryStatus: true})
     }
 
     removeColorFilter(){
         (this.props.dispatch(removeColor()));
-        //this.setState({filterCategoryStatus: false, filterColorStatus: false})
     }
 
-    //const filterNameElement = <div> {  this.props.selectedCategory || this.props.selectedColor ? `Filtrujesz według: ${this.showFilterName()}` : '' }</div>
 
-    //tu nie działa
-    // removeFilter(event) {
-    //     this.props.dispatch(removeFilter(event))
-    // }
 
     render() {
 
