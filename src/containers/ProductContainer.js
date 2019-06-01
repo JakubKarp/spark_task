@@ -17,9 +17,6 @@ class ProductContainer extends Component {
 
         this.showCategoryMenu = this.showCategoryMenu.bind(this);
         this.showColorMenu = this.showColorMenu.bind(this);
-        //this.closeCategoryMenu = this.closeCategoryMenu.bind(this);
-        //this.closeColorMenu = this.closeColorMenu.bind(this);
-        //this.showFilterName = this.showFilterName.bind(this);
         this.removeCategoryFilter = this.removeCategoryFilter.bind(this);
         this.removeColorFilter = this.removeColorFilter.bind(this);
     }
@@ -29,19 +26,14 @@ class ProductContainer extends Component {
     }
 
     componentDidUpdate(prevProps) {
-
         if (this.props.productsReady !== prevProps.productsReady ) {
             this.props.dispatch(getProducts());
-            console.log("zzzzzzzzzzz", this.props.productsReady);
-
         }
         if (this.props.visibleProducts !== prevProps.visibleProducts) {
-            console.log("yyyyyyyyyyy", this.props.visibleProducts);
             this.setState({
                 products: this.props.visibleProducts
             })
         }
-
     }
 
     showCategoryMenu(ev) {
@@ -58,7 +50,6 @@ class ProductContainer extends Component {
         });
     }
 
-
     chooseCategory(event) {
         (this.props.dispatch(setCategory(event.target.value)));
         this.setState({ showCategoryMenu: false })
@@ -69,8 +60,6 @@ class ProductContainer extends Component {
         this.setState({ showColorMenu: false })
     }
 
-
-
     removeCategoryFilter(){
         (this.props.dispatch(removeCategory()));
     }
@@ -79,15 +68,9 @@ class ProductContainer extends Component {
         (this.props.dispatch(removeColor()));
     }
 
-
-
     render() {
-
         const filterCategoryName = this.props.selectedCategory ? this.props.selectedCategory.map(product => product.category).slice(0,1) : '';
         const filterColorName = this.props.selectedColor ? this.props.selectedColor.map(product => product.color).slice(0,1) : '';
-        console.log("TCL: render -> this.props.visibleProducts", this.props.visibleProducts)
-        console.log("log.products STATE", this.state.products);
-
 
 		return (
             <div>

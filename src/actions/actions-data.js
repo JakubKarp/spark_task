@@ -11,10 +11,7 @@ export function loadProductsFromMongo() {
     };
 }
 
-
 export function loadAllDataProducts(products) {
-    console.log("Tu są?", products);
-
     return {
         type: LOAD_PRODUCTS_SUCCESS,
         products

@@ -14,16 +14,13 @@ const initialState = {
 const productsReducer =  function (state = initialState, action) {
     switch (action.type) {
         case LOAD_PRODUCTS_SUCCESS:
-        console.log("proszę!!!!!!", action.products)
             return{...state, products: action.products}
         case GET_PRODUCTS:
-                console.log("dawac!!!!!!", state.products)
             return {...state, visibleProducts: state.products};
         case GET_PRODUCT:
             const selectedProduct = state.products.find(product => product.id === parseInt(action.id));
             return {...state, visibleProduct: selectedProduct};
         case SET_CATEGORY:
-            //state.selectedCategory = state.products.filter(product => product.category === action.category);
             state.selectedCategory = state.selectedColor !== null  ? state.selectedColor.filter(product => product.category === action.category) : state.products.filter(product => product.category === action.category) ;
             const filterCategory = state.selectedColor !== null  ? "color" : "category";
 			return  {...state, visibleProducts: state.selectedCategory, filter: filterCategory};
@@ -32,10 +29,12 @@ const productsReducer =  function (state = initialState, action) {
             const filterColor = state.selectedCategory !== null  ? "category" : "color";
             return  {...state, visibleProducts: state.selectedColor, filter: filterColor};
         case REMOVE_CATEGORY:
-            state.selectedCategory !== null ?  state.selectedCategory = null : state;
+            state.selectedCategory = null;
+            state.selectedColor = null;
             return  {...state, visibleProducts: state.products, filter: ""};
         case REMOVE_COLOR:
-            state.selectedColor !== null ?  state.selectedColor = null : state;
+            state.selectedColor = null;
+            state.selectedCategory = null;
             return  {...state, visibleProducts: state.products, filter: ""};
         default:
             return state;
