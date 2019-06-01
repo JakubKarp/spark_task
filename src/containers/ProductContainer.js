@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 import { setCategory, setColor, removeCategory, removeColor, getProducts } from '../actions/actions-products';
 
 import ProductLabelList from '../presentational/shop/ProductListComponent';
-// import { BrowserRouter as Router, Route, Link} from "react-router-dom";
-//import ProductLabel from '../presentational/shop/ProductComponent';
-
+import { loadProductsFromMongo } from '../actions/actions-data';
 
 class ProductContainer extends Component {
     constructor(props) {
@@ -14,42 +12,28 @@ class ProductContainer extends Component {
         this.state = {
             showCategoryMenu: false,
             showColorMenu: false,
-            //filterCategoryStatus: false,
-            //filterColorStatus: false
             products: []
         };
 
         this.showCategoryMenu = this.showCategoryMenu.bind(this);
         this.showColorMenu = this.showColorMenu.bind(this);
-        //this.closeCategoryMenu = this.closeCategoryMenu.bind(this);
-        //this.closeColorMenu = this.closeColorMenu.bind(this);
-        //this.showFilterName = this.showFilterName.bind(this);
         this.removeCategoryFilter = this.removeCategoryFilter.bind(this);
         this.removeColorFilter = this.removeColorFilter.bind(this);
     }
 
     componentDidMount(){
-        this.setState({
-            products: this.props.visibleProducts
-        })
-        console.log("products from comDidM", this.state.products);
-
+        this.props.dispatch(loadProductsFromMongo());
     }
 
     componentDidUpdate(prevProps) {
-
         if (this.props.productsReady !== prevProps.productsReady ) {
             this.props.dispatch(getProducts());
-            console.log("zzzzzzzzzzz", this.props.productsReady);
-
         }
         if (this.props.visibleProducts !== prevProps.visibleProducts) {
-            console.log("yyyyyyyyyyy", this.props.visibleProducts);
             this.setState({
                 products: this.props.visibleProducts
             })
         }
-
     }
 
     showCategoryMenu(ev) {
@@ -66,73 +50,27 @@ class ProductContainer extends Component {
         });
     }
 
-    // closeCategoryMenu(ev) {
-    //     ev.preventDefault();
-    //     if (!this.dropdownMenu.contains(ev.target)) {
-    //     this.setState({ showCategoryMenu: false }, () => {
-    //         document.removeEventListener('click', this.closeCategoryMenu);
-    //       });
-    //     }
-    //   }
-
-    // closeColorMenu(ev) {
-    //     ev.preventDefault();
-    //     if (!this.dropdownMenu.contains(ev.target)) {
-    //     this.setState({ showColorMenu: false }, () => {
-    //         document.removeEventListener('click', this.closeColorMenu);
-    //       });
-    //     }
-    // }
-
     chooseCategory(event) {
         (this.props.dispatch(setCategory(event.target.value)));
-        //this.state.filterColorStatus !== true && this.setState({filterCategoryStatus: true})
         this.setState({ showCategoryMenu: false })
     }
 
     chooseColor(event) {
         (this.props.dispatch(setColor(event.target.value)));
-        //this.state.filterCategoryStatus !== true && this.setState({filterColorStatus: true})
         this.setState({ showColorMenu: false })
     }
 
-    // showFilterName() {
-    //     if (this.props.selectedCategory) {
-    //         this.setState({filterName: this.props.selectedCategory.map(product => product.category).slice(0,1)})
-
-    //     } else if (this.props.selectedColor) {
-    //         this.setState({filterName: this.props.selectedColor.map(product => product.category).slice(0,1)})
-
-    //     } else {this.state.filterName}
-
-
-    // }
-
     removeCategoryFilter(){
         (this.props.dispatch(removeCategory()));
-        //this.setState({filterCategoryStatus: false})
-        //this.state.filterColorStatus !== true && this.setState({filterCategoryStatus: true})
     }
 
     removeColorFilter(){
         (this.props.dispatch(removeColor()));
-        //this.setState({filterCategoryStatus: false, filterColorStatus: false})
     }
 
-    //const filterNameElement = <div> {  this.props.selectedCategory || this.props.selectedColor ? `Filtrujesz według: ${this.showFilterName()}` : '' }</div>
-
-    //tu nie działa
-    // removeFilter(event) {
-    //     this.props.dispatch(removeFilter(event))
-    // }
-
     render() {
-
         const filterCategoryName = this.props.selectedCategory ? this.props.selectedCategory.map(product => product.category).slice(0,1) : '';
         const filterColorName = this.props.selectedColor ? this.props.selectedColor.map(product => product.color).slice(0,1) : '';
-        console.log("TCL: render -> this.props.visibleProducts", this.props.visibleProducts)
-        console.log("log.products STATE", this.state.products);
-
 
 		return (
             <div>
