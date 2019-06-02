@@ -1,3 +1,9 @@
 .header{
-    font-size: 30px;
+    font-size: 60px;
+}
+
+.products{
+    padding: 10px;
+    background: rebeccapurple;
+    border-bottom: 1px solid #ddd;
 }

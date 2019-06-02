@@ -29,7 +29,7 @@ TROUBLES
 
 - 2.06.19
     - próby redux/router - strona produktu
-    - wyświetlanie listy dostępnych produktów i ich stanów magazynowych - bez stylowania
+    - panel admin wyświetlanie listy dostępnych produktów i ich stanów magazynowych - bez stylowania
 - 1.06.19
     - rozwiązanie problemów z reduxem - były źle czyszczone filtry
 - 25.05.19

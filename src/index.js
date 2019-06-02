@@ -19,6 +19,6 @@ render(
 document.getElementById('root')
 );
 
-store.dispatch(loadProductsFromMongo())
+//store.dispatch(loadProductsFromMongo())
 
 

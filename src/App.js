@@ -2,7 +2,7 @@ import React from 'react';
 import ProductContainer from './containers/ProductContainer.js';
 import HeaderContainer from './containers/HeaderContainer';
 import AdminPanel from './presentational/admin/AdminPanelComponent';
-import { Link } from "react-router-dom";
+
 
 
 const App = () => {
@@ -14,7 +14,7 @@ const App = () => {
         </div>
         <div className="admin">
           <AdminPanel />
-          <Link to={'/admin'} >Link</Link>
+          
         </div>
     </div>
   );
