@@ -3,27 +3,33 @@ GOAL
         PO STRONIE UŻYTKOWNIKA
     - filtrowanie produktów dwustopniowe - z wybranego filtra można wyfiltrować głębiej [zrobione]
     - wyświetlanie karty pojedynczego produktu [częściowo - jest routing, nie ma podpiętych danych i nie ostylowane]
-    - po powrocie z karty produktu zachowane są filtry [zrobione]
+    - po powrocie z karty produktu zachowane są filtry
     - dodanie produktu do koszyka
     - wyświetlanie stanu koszyka
     - wyświetlanie koszyka
     - wysłanie zamówienia - w uproszczonej wersji bez kroków o adresie i sposobie dostawy - info o zamówieniu ma trafić do bazy
         PO STRONIE ADMINA
-    - wyświetlanie listy dostępnych produktów i ich stanów magazynowych
+    - wyświetlanie listy dostępnych produktów i ich stanów magazynowych [zrobione]
     - wyświetlanie listy zamówionych produktów
     - dodawanie nowych produktów do bazy
 
 TO DO
-- strona produktu
-- podpiąć bazę do sekcji admin - wyświetlanie ilości magazynowej każdego produktu
+- stylowanie wydzielić do komponentów
+- po powrocie z karty produktu nie zachowane są filtry
+- strona produktu - redux
+- w sekcji admin - pełny panel
 - DALSZE KROKI: zamówienia [front zamówienia, wypychanie zamówienia do bazy, wyświetlanie w panelu admin zamówień]
 - dodać obsługę obrazków do Mongo - w 1. etapie tego nie ruszamy
+
+TROUBLES
+- nie wiem czy dobrze wywołuję getProducts() w ProductContainer - wielokrotne renderowanie
 
 
 
 
 - 2.06.19
     - próby redux/router - strona produktu
+    - wyświetlanie listy dostępnych produktów i ich stanów magazynowych - bez stylowania
 - 1.06.19
     - rozwiązanie problemów z reduxem - były źle czyszczone filtry
 - 25.05.19
