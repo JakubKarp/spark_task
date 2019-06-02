@@ -12,12 +12,15 @@ const AdminPanel = (props) => {
             <div className={styles.products} >{product.name}: {product.magazine_amount} egz.</div>
         </div>
     )
+    const totalAmount = (props.productsState.map(product => product.magazine_amount))
+        .reduce((previous, current) => previous + current, 0)
 
     return (
         <div>
             <div className={styles.header} >Admin Panel</div>
-            <Link to={'/admin'} >Link</Link>
+            <Link to={'/admin'} >Pełny panel</Link>
             {stateOfProducts}
+            <div>Stan magazynu: {totalAmount} egz.</div>
         </div>
     )
 }

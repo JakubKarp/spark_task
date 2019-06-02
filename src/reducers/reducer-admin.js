@@ -1,4 +1,4 @@
-import { LOAD_PRODUCTS_SUCCESS } from '../actions/actions-data';
+import { LOAD_PRODUCTS_ADMIN } from '../actions/actions-data';
 
 const initialState = {
     allProducts: []
@@ -6,7 +6,7 @@ const initialState = {
 
 const adminReducer = (state = initialState, action ) => {
     switch (action.type) {
-        case LOAD_PRODUCTS_SUCCESS:
+        case LOAD_PRODUCTS_ADMIN:
             return {...state, allProducts: action.products};
         default:
             return state;
