@@ -29,14 +29,12 @@ const productsReducer =  function (state = initialState, action) {
             const filterColor = state.selectedCategory !== null  ? "category" : "color";
             return  {...state, visibleProducts: state.selectedColor, filter: filterColor};
         case REMOVE_CATEGORY:
-            //state.selectedCategory = null;
-            //state.selectedColor = null;
-            state.selectedCategory !== null ?  state.selectedCategory = null : state;
+            state.selectedCategory = null;
+            state.selectedColor = null;
             return  {...state, visibleProducts: state.products, filter: ""};
         case REMOVE_COLOR:
-            //state.selectedColor = null;
-            //state.selectedCategory = null;
-            state.selectedColor !== null ?  state.selectedColor = null : state;
+            state.selectedColor = null;
+            state.selectedCategory = null;
             return  {...state, visibleProducts: state.products, filter: ""};
         default:
             return state;

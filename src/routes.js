@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route} from "react-router-dom";
 import App from './App';
 import singleProduct from './presentational/shop/SingleProduct';
 import AdminPanel from './presentational/admin/AdminPanelComponent';
-import Lulu from './strona2';
 
 const RoutesDefinition = () => (
     <Router>

@@ -8,7 +8,7 @@ const ProductLabelList = (props) => (
         <div className="product__list__component">
             {props.products && props.products.map((product, idx) => {
                 return (
-                    <div key={product.id}  >
+                    <div key={product._id}  >
                         <Link key={idx} to={`/prod/${product.product_id}` }>
                             <ProductLabel key={product.id} product={product} />
                         </Link>
