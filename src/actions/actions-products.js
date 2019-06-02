@@ -44,9 +44,8 @@ export function removeCategory() {
     }
 }
 
-export function removeColor(color) {
+export function removeColor() {
     return {
         type: REMOVE_COLOR,
-        color
     }
 }

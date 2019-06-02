@@ -36,6 +36,8 @@ class ProductContainer extends Component {
         }
     }
 
+
+
     showCategoryMenu(ev) {
         ev.preventDefault();
         this.setState({ showCategoryMenu: true, showColorMenu: false }, () => {
@@ -71,6 +73,7 @@ class ProductContainer extends Component {
     render() {
         const filterCategoryName = this.props.selectedCategory ? this.props.selectedCategory.map(product => product.category).slice(0,1) : '';
         const filterColorName = this.props.selectedColor ? this.props.selectedColor.map(product => product.color).slice(0,1) : '';
+        const keyId = this.state.products.map(product => product._id )
 
 		return (
             <div>
@@ -121,13 +124,7 @@ class ProductContainer extends Component {
                 {  this.props.selectedCategory && this.props.filter === "category" ? <div className="filter_information" >Filtrujesz według: Kategorii {filterCategoryName}</div> : null }
                 {  this.props.selectedColor && this.props.filter === "color" ? <div className="filter_information">Filtrujesz według: Koloru {filterColorName}</div> : null }
                 {/* <span onClick={this.removeFilter} >Usuń filtr</span>  */}
-                {this.props.visibleProducts.length > 0 ? <ProductLabelList products={this.state.products} /> : "jeszcze ładuje"}
-
-                {/* <ProductLabelList
-
-                    products={this.props.visibleProducts}
-
-                /> */}
+                {this.props.visibleProducts.length > 0 ? <ProductLabelList products={this.state.products} key={keyId} /> : "jeszcze ładuje"}
 
             </div>
         )
