@@ -5,7 +5,7 @@ GOAL
         PO STRONIE UŻYTKOWNIKA
     - filtrowanie produktów dwustopniowe - z wybranego filtra można wyfiltrować głębiej [zrobione]
     - wyświetlanie karty pojedynczego produktu [częściowo - jest routing, nie ma podpiętych danych i nie ostylowane]
-    - po powrocie z karty produktu zachowane są filtry
+    - po powrocie z karty produktu zachowane są filtry [zrobione]
     - dodanie produktu do koszyka
     - wyświetlanie stanu koszyka
     - wyświetlanie koszyka
@@ -22,10 +22,7 @@ TO DO
 - DALSZE KROKI: zamówienia [front zamówienia, wypychanie zamówienia do bazy, wyświetlanie w panelu admin zamówień]
 - dodać obsługę obrazków do Mongo - w 1. etapie tego nie ruszamy
 
-TROUBLES
-- nie wiem czy dobrze wywołuję getProducts() w ProductContainer - wielokrotne renderowanie
-
-
+DONE
 - 27.07.19
     - po powrocie z karty produktu nie zachowane są filtry - rozwiązane. Refaktor reducera, bez pośrednika w postaci products, visibleProducts bezpośrednio zaaplikowane do product container
 - 2.06.19

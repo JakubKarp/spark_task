@@ -1,12 +1,12 @@
 import React from 'react';
-//import { getProduct } from '../../actions/actions-products';
+
 
 //import Single from './SingleProduct';
 
 const ProductLabel = (props) => (
     <div 
         className="product__list__component__singleProduct"
-        //onClick={props.dispatch(getProduct(props.product._id))}
+        
     >
     {/* <Link to={"/" + props.product.id }> */}
     {/* <Link to={'/lulu'} > */}

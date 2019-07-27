@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setCategory, setColor, removeCategory, removeColor, getProducts } from '../actions/actions-products';
-
+import { setCategory, setColor, removeCategory, removeColor } from '../actions/actions-products';
 import ProductLabelList from '../presentational/shop/ProductListComponent';
-import { loadProductsFromMongo } from '../actions/actions-data';
 
 class ProductContainer extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             showCategoryMenu: false,
             showColorMenu: false,
@@ -18,19 +15,20 @@ class ProductContainer extends Component {
         this.showColorMenu = this.showColorMenu.bind(this);
         this.removeCategoryFilter = this.removeCategoryFilter.bind(this);
         this.removeColorFilter = this.removeColorFilter.bind(this);
+        this.closeMenu = this.closeMenu.bind(this);
     }
 
     showCategoryMenu(ev) {
         ev.preventDefault();
         this.setState({ showCategoryMenu: true, showColorMenu: false }, () => {
-          document.addEventListener('click', this.closeCategoryMenu);
+          document.addEventListener('click', this.closeMenu);
         });
     }
 
     showColorMenu(ev) {
         ev.preventDefault();
         this.setState({ showColorMenu: true, showCategoryMenu: false }, () => {
-          document.addEventListener('click', this.closeColorMenu);
+          document.addEventListener('click', this.closeMenu);
         });
     }
 
@@ -44,12 +42,18 @@ class ProductContainer extends Component {
         this.setState({ showColorMenu: false })
     }
 
-    removeCategoryFilter(){
+    removeCategoryFilter() {
         (this.props.dispatch(removeCategory()));
     }
 
-    removeColorFilter(){
+    removeColorFilter() {
         (this.props.dispatch(removeColor()));
+    }
+
+    closeMenu() {
+        this.setState({ showColorMenu: false });
+        this.setState({ showCategoryMenu: false });
+        document.removeEventListener('click', this.closeMenu)
     }
 
     render() {
