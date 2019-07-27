@@ -2,7 +2,7 @@ import { GET_PRODUCTS, GET_PRODUCT, SET_CATEGORY, SET_COLOR, REMOVE_CATEGORY, RE
 import { LOAD_PRODUCTS_SUCCESS } from '../actions/actions-data'
 
 const initialState = {
-    products: [],
+    allInitialProducts: [],
     visibleProducts: [],
     visibleProduct: {},
     selectedCategory: null,
@@ -14,28 +14,28 @@ const initialState = {
 const productsReducer =  function (state = initialState, action) {
     switch (action.type) {
         case LOAD_PRODUCTS_SUCCESS:
-            return{...state, products: action.products}
+            return {...state, visibleProducts: action.products, allInitialProducts: action.products}
         case GET_PRODUCTS:
-            return {...state, visibleProducts: state.products};
+            return {...state, visibleProducts: state.visibleProducts};
         case GET_PRODUCT:
-            const selectedProduct = state.products.find(product => product.id === parseInt(action.id, 10));
+            const selectedProduct = state.visibleProducts.find(product => product.id === parseInt(action.id, 10));
             return {...state, visibleProduct: selectedProduct};
         case SET_CATEGORY:
-            state.selectedCategory = state.selectedColor !== null  ? state.selectedColor.filter(product => product.category === action.category) : state.products.filter(product => product.category === action.category) ;
+            state.selectedCategory = state.selectedColor !== null  ? state.selectedColor.filter(product => product.category === action.category) : state.visibleProducts.filter(product => product.category === action.category) ;
             const filterCategory = state.selectedColor !== null  ? "color" : "category";
-			return  {...state, visibleProducts: state.selectedCategory, filter: filterCategory};
+			return {...state, visibleProducts: state.selectedCategory, filter: filterCategory};
         case SET_COLOR:
-            state.selectedColor = state.selectedCategory !== null  ? state.selectedCategory.filter(product => product.color === action.color) : state.products.filter(product => product.color === action.color);
+            state.selectedColor = state.selectedCategory !== null  ? state.selectedCategory.filter(product => product.color === action.color) : state.visibleProducts.filter(product => product.color === action.color);
             const filterColor = state.selectedCategory !== null  ? "category" : "color";
-            return  {...state, visibleProducts: state.selectedColor, filter: filterColor};
+            return {...state, visibleProducts: state.selectedColor, filter: filterColor};
         case REMOVE_CATEGORY:
             state.selectedCategory = null;
             state.selectedColor = null;
-            return  {...state, visibleProducts: state.products, filter: ""};
+            return {...state, visibleProducts: state.allInitialProducts, filter: ""};
         case REMOVE_COLOR:
             state.selectedColor = null;
             state.selectedCategory = null;
-            return  {...state, visibleProducts: state.products, filter: ""};
+            return  {...state, visibleProducts: state.allInitialProducts, filter: ""};
         default:
             return state;
     }

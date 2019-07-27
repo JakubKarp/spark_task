@@ -4,9 +4,11 @@ export const LOAD_PRODUCTS_ADMIN = 'LOAD_PRODUCTS_ADMIN'
 
 export function loadProductsFromMongo() {
     return function(dispatch) {
-        return getFromMongo.mongoProducts().then(products => {
+        return getFromMongo.mongoProducts()
+        .then(products => {
             dispatch(loadAllDataProducts(products));
-        }).catch(error => {
+        })
+        .catch(error => {
             throw(error);
         });
     };

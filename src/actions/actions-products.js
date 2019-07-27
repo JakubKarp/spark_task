@@ -6,11 +6,6 @@ export const SET_COLOR = 'SET_COLOR';
 export const REMOVE_CATEGORY = 'REMOVE_CATEGORY';
 export const REMOVE_COLOR = 'REMOVE_COLOR';
 
-
-
-
-
-
 export function getProducts() {
     return {
         type: GET_PRODUCTS

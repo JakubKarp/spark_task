@@ -2,7 +2,8 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './store/store-index';
-import { loadDataForAdmin } from './actions/actions-data';
+import { loadDataForAdmin, loadProductsFromMongo } from './actions/actions-data';
+import { getProducts } from './actions/actions-products';
 import RoutesDefinition from './routes';
 import './App.css';
 
@@ -19,5 +20,6 @@ document.getElementById('root')
 );
 
 store.dispatch(loadDataForAdmin())
-
+store.dispatch(loadProductsFromMongo());
+store.dispatch(getProducts());
 

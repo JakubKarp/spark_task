@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const AdminPanel = (props) => {
     const stateOfProducts = props.productsState.map(product =>
         <div key={product._id} >
-            <div className={styles.products} >{product.name}: {product.magazine_amount} egz.</div>
+            <div className={styles.products}>{product.name}: {product.magazine_amount} egz.</div>
         </div>
     )
     const totalAmount = (props.productsState.map(product => product.magazine_amount))

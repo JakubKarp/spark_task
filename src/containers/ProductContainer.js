@@ -12,7 +12,6 @@ class ProductContainer extends Component {
         this.state = {
             showCategoryMenu: false,
             showColorMenu: false,
-            products: []
         };
 
         this.showCategoryMenu = this.showCategoryMenu.bind(this);
@@ -20,23 +19,6 @@ class ProductContainer extends Component {
         this.removeCategoryFilter = this.removeCategoryFilter.bind(this);
         this.removeColorFilter = this.removeColorFilter.bind(this);
     }
-
-    componentDidMount(){
-        this.props.dispatch(loadProductsFromMongo());
-    }
-
-    componentDidUpdate(prevProps) {
-        if (this.props.productsReady !== prevProps.productsReady ) {
-            this.props.dispatch(getProducts());
-        }
-        if (this.props.visibleProducts !== prevProps.visibleProducts) {
-            this.setState({
-                products: this.props.visibleProducts
-            })
-        }
-    }
-
-
 
     showCategoryMenu(ev) {
         ev.preventDefault();
@@ -73,7 +55,7 @@ class ProductContainer extends Component {
     render() {
         const filterCategoryName = this.props.selectedCategory ? this.props.selectedCategory.map(product => product.category).slice(0,1) : '';
         const filterColorName = this.props.selectedColor ? this.props.selectedColor.map(product => product.color).slice(0,1) : '';
-        const keyId = this.state.products.map(product => product._id )
+        const keyId = this.props.visibleProducts.map( product => product._id )
 
 		return (
             <div>
@@ -121,11 +103,9 @@ class ProductContainer extends Component {
                     }
                     </div>
                 </div>
-                {  this.props.selectedCategory && this.props.filter === "category" ? <div className="filter_information" >Filtrujesz według: Kategorii {filterCategoryName}</div> : null }
-                {  this.props.selectedColor && this.props.filter === "color" ? <div className="filter_information">Filtrujesz według: Koloru {filterColorName}</div> : null }
-                {/* <span onClick={this.removeFilter} >Usuń filtr</span>  */}
-                {this.props.visibleProducts.length > 0 ? <ProductLabelList products={this.state.products} key={keyId} /> : "jeszcze ładuje"}
-
+                { this.props.selectedCategory && this.props.filter === "category" ? <div className="filter_information" >Filtrujesz według: Kategorii {filterCategoryName}</div> : null }
+                { this.props.selectedColor && this.props.filter === "color" ? <div className="filter_information">Filtrujesz według: Koloru {filterColorName}</div> : null }
+                { this.props.visibleProducts.length > 0 ? <ProductLabelList products={this.props.visibleProducts} key={keyId} /> : "jeszcze ładuje"}
             </div>
         )
     }
@@ -133,7 +113,6 @@ class ProductContainer extends Component {
 
 const mapStateToProps = function (store) {
     return {
-        productsReady: store.productsReducer.products,
         visibleProducts: store.productsReducer.visibleProducts,
         selectedCategory: store.productsReducer.selectedCategory,
         selectedColor: store.productsReducer.selectedColor,
@@ -142,4 +121,3 @@ const mapStateToProps = function (store) {
 };
 
 export default connect(mapStateToProps)(ProductContainer);
-//export default ProductContainer;
