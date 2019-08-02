@@ -4,7 +4,7 @@ GOAL
 - aplikacja 1. etap ma spełniać następujące funkcjonalności:
         PO STRONIE UŻYTKOWNIKA
     - filtrowanie produktów dwustopniowe - z wybranego filtra można wyfiltrować głębiej [zrobione]
-    - wyświetlanie karty pojedynczego produktu [częściowo - jest routing, nie ma podpiętych danych i nie ostylowane]
+    - wyświetlanie karty pojedynczego produktu [częściowo - jest routing, są podpięte dane, nie ostylowane]
     - po powrocie z karty produktu zachowane są filtry [zrobione]
     - dodanie produktu do koszyka
     - wyświetlanie stanu koszyka
@@ -17,12 +17,13 @@ GOAL
     - kasowanie produktów
 
 TO DO
-- strona produktu - redux
 - w sekcji admin - pełny panel
 - DALSZE KROKI: zamówienia [front zamówienia, wypychanie zamówienia do bazy, wyświetlanie w panelu admin zamówień]
 - dodać obsługę obrazków do Mongo - w 1. etapie tego nie ruszamy
 
 DONE
+- 30.07.19
+    - strona produktu - wyświetlanie danych klikniętego produktu (modyfikacja reducera i funkcji w komponentach)
 - 27.07.19
     - po powrocie z karty produktu nie zachowane są filtry - rozwiązane. Refaktor reducera, bez pośrednika w postaci products, visibleProducts bezpośrednio zaaplikowane do product container
 - 2.06.19

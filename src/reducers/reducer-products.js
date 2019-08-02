@@ -18,7 +18,7 @@ const productsReducer =  function (state = initialState, action) {
         case GET_PRODUCTS:
             return {...state, visibleProducts: state.visibleProducts};
         case GET_PRODUCT:
-            const selectedProduct = state.visibleProducts.find(product => product.id === parseInt(action.id, 10));
+            const selectedProduct = state.visibleProducts.filter(product => product._id === action.id);
             return {...state, visibleProduct: selectedProduct};
         case SET_CATEGORY:
             state.selectedCategory = state.selectedColor !== null  ? state.selectedColor.filter(product => product.category === action.category) : state.visibleProducts.filter(product => product.category === action.category) ;
